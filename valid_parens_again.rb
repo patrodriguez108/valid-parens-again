@@ -13,3 +13,11 @@ is_valid("()[]{}")
 is_valid("(]")
 
 # output: false
+
+is_valid("([)]")
+
+# output: false
+
+is_valid("{[]}")
+
+# output: true

@@ -4,39 +4,53 @@ def is_valid(s)
   i = 0
 
   until i == s.length
-    if s[i] == "("
+    if s[i] == "(" || s[i] == "[" || s[i] == "{"
       array << s[i]
-    elsif s[i] == ")"
+    elsif s[i] == ")" || s[i] == "]" || s[i] == "}"
       array << s[i]
     end
 
     i += 1
   end
 
-  array.include?("(") && array.include?(")")
+  if array.include?("(") && array.include?(")")
+    array.delete("(") && array.delete(")")
+  end
+  
+  if array.include?("[") && array.include?("]")
+    array.delete("[") && array.delete("]")
+  end
+
+  if array.include?("{") && array.include?("}")
+    array.delete("{") && array.delete("}")
+  end
+
+  array.empty?
 end
 
 is_valid("()")
 
 # output: true
 
-# is_valid("()[]{}")
+is_valid("()[]{}")
 
-# # output: true
+# output: true
 
-# is_valid("(]")
+is_valid("(]")
 
-# # output: false
+# output: false
 
-# is_valid("([)]")
+is_valid("([)]")
 
-# # output: false
+# output: false
 
-# is_valid("{[]}")
+is_valid("{[]}")
 
-# # output: true
+# output: true
 
 
 # scan through string for an opening bracket
 # place opening bracket in array
-# if array contains both opening and closing bracket, return true
+# scan through string for a closing bracket
+# place closing bracket in array
+# if array contains both opening and closing bracket, remove both from array
